@@ -54,8 +54,8 @@
         private static void ChessKnightInit()
         {
             IO.SendLine("");
-            int X = int.Parse(IO.Get("Введите стартовую позицию коня по X (0-7): "));
-            int Y = int.Parse(IO.Get("Введите стартовую позицию коня по Y (0-7): "));
+            int X = int.Parse(IO.Get("Введите стартовую позицию коня по X (нумерация с 0): "));
+            int Y = int.Parse(IO.Get("Введите стартовую позицию коня по Y (нумерация с 0): "));
             var Start = (X, Y);
             chessKnight = new ChessKnight(board, Start);
         }

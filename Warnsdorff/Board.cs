@@ -58,7 +58,7 @@
                     }
                     else
                     {
-                        IO.Send($"{board[i, j],3}");
+                        IO.Send($"{board[i, j], 4}");
                     }
                 }
                 IO.SendLine("");
