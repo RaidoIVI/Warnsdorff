@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Warnsdorff
+﻿namespace Warnsdorff
 {
     internal class ChessKnight
     {
         private Board board;
         private (int, int) currentCoordinat;
+        private (int, int) startCoordinat;
         private bool stack;
         private int stepCounter;
 
         internal ChessKnight(Board board, (int, int) currentCoordinat)
         {
             this.board = board;
-            this.currentCoordinat = currentCoordinat;
-            stack = false;
-            stepCounter = 1;
+            startCoordinat = currentCoordinat;
+            Reset();
         }
 
         private int GetWieght((int, int) coordinats)
@@ -28,7 +22,7 @@ namespace Warnsdorff
 
         private (int, int)[] GetPosibleMove((int, int) coordinats)
         {
-            (int,int) posibleCoordinats;
+            (int, int) posibleCoordinats;
             List<(int, int)> result = new List<(int, int)>();
 
             for (int i = -2; i < 3; i++)
@@ -73,7 +67,7 @@ namespace Warnsdorff
                 else
                 {
                     var rnd = new Random();
-                    if (rnd.Next(10)%2==0 && minWieght == GetWieght(coordinat))
+                    if (rnd.Next(10) % 2 == 0 && minWieght == GetWieght(coordinat))
                     {
                         lightCoordinat = coordinat;
                     }
@@ -94,13 +88,9 @@ namespace Warnsdorff
             }
             else
             {
+                board.SetValue(currentCoordinat, stepCounter);
                 return false;
             }
-        }
-
-        private void LastMove()
-        {
-            board.SetValue(currentCoordinat, stepCounter);
         }
 
         internal void Run()
@@ -110,7 +100,24 @@ namespace Warnsdorff
             {
                 step = Move();
             }
-            LastMove();
+
+            if (!board.Complite())
+            {
+                IO.SendLine("Ничего не получается...");
+            }
+            else 
+            {
+                IO.SendLine($"Успешно");
+                board.Draw();
+            }
+            Reset();
+        }
+        private void Reset()
+        {
+            currentCoordinat = startCoordinat;
+            stepCounter = 1;
+            stack = false;
+            board.Reset();
         }
     }
 }

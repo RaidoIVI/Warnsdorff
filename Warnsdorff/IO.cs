@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Warnsdorff
+﻿namespace Warnsdorff
 {
     internal static class IO
     {
@@ -14,15 +8,17 @@ namespace Warnsdorff
             var tmp = Console.ReadLine();
             return tmp;
         }
-
         internal static void Send(string Value)
-        { 
+        {
             Console.Write(Value);
         }
-
         internal static void SendLine(string Value)
         {
             Console.WriteLine(Value);
+        }
+        internal static ConsoleKey ReadKey()
+        {
+            return Console.ReadKey().Key;
         }
     }
 }
