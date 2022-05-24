@@ -6,7 +6,7 @@
 
         internal Board(int x, int y)
         {
-            board = new int[x+4, y+4];
+            board = new int[x + 4, y + 4];
             Reset();
         }
 
@@ -58,7 +58,7 @@
                     }
                     else
                     {
-                        IO.Send($"{board[i, j], 4}");
+                        IO.Send($"{board[i, j],4}");
                     }
                 }
                 IO.SendLine("");

@@ -105,7 +105,7 @@
             {
                 IO.SendLine("Ничего не получается...");
             }
-            else 
+            else
             {
                 IO.SendLine($"Успешно");
                 board.Draw();
